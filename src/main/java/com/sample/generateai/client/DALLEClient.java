@@ -73,4 +73,5 @@ public class DALLEClient {
             this.size = size;
         }
 
-    }}
+    }
+}
