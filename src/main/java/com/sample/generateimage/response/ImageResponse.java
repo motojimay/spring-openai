@@ -1,4 +1,3 @@
 package com.sample.generateimage.response;
 
-public class ImageResponse {
-}
+public record ImageResponse() {}

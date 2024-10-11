@@ -13,6 +13,10 @@ public class ImageGeneratedServiceImpl implements ImageGeneratedService {
 
     @Value("${openai.api.key}")
     private String openAIKey;
+    @Value("${image.generate.number}")
+    private int number;
+    @Value("${image.generate.size}")
+    private String size;
 
     public ImageGeneratedServiceImpl(DALLEClient dalleClient) {
         this.dalleClient = dalleClient;
@@ -20,8 +24,8 @@ public class ImageGeneratedServiceImpl implements ImageGeneratedService {
 
     public String getGeneratedImageUrl(String prompt) {
         var token = "Bearer " + openAIKey;
-        var dalleRequest = new DALLERequest(prompt, 1, "1024x1024");
+        var dalleRequest = new DALLERequest(prompt, number, size);
         var dalleResponse = dalleClient.getGeneratedImage(dalleRequest, token);
-        return dalleResponse.getData().get(0).getUrl();
+        return dalleResponse.data().get(0).url();
     }
 }

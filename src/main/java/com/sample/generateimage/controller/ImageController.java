@@ -28,9 +28,9 @@ public class ImageController {
 
     @PostMapping("/generate")
     public ResponseEntity<Mono<ImageInfoDto>> generateImage(@RequestBody ImageRequest image) {
-        var downloadUrl = imageGeneratedService.getGeneratedImageUrl(image.getPrompt());
-        var path = imageDownloadService.downloadImageFromUrl(downloadUrl, image.getTitle());
-        var dto = new ImageInfoDto(image.getTitle(), image.getPrompt(), path);
+        var downloadUrl = imageGeneratedService.getGeneratedImageUrl(image.prompt());
+        var path = imageDownloadService.downloadImageFromUrl(downloadUrl, image.title());
+        var dto = new ImageInfoDto(image.title(), image.prompt(), path);
         return ResponseEntity.ok(imageInfoService.insertGeneratedImageInfo(dto));
     }
 

@@ -25,7 +25,7 @@ public class ImageInfoServiceImpl implements ImageInfoService {
 
     @Override
     public Mono<ImageInfoDto> insertGeneratedImageInfo(ImageInfoDto dto) {
-        return imageInfoRepository.save(new ImageInfoEntity(dto.title(), dto.prompt(), dto.title()))
+        return imageInfoRepository.save(new ImageInfoEntity(dto.title(), dto.prompt(), dto.path()))
                 .map(ImageInfoServiceImpl::apply)
                 .doOnNext(image -> System.out.println("Generate image : " + image))
                 .onErrorResume(e -> { throw new RuntimeException(e); });
