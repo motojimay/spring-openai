@@ -1,3 +1,9 @@
 package com.sample.generateimage.response;
 
-public record ImageResponse() {}
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record ImageResponse(
+        @JsonProperty("title") String title,
+        @JsonProperty("prompt") String prompt,
+        @JsonProperty("path") String path
+) {}
